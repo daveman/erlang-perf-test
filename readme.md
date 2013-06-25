@@ -35,6 +35,6 @@ It is "common knowledge" that a case statement "compiles to the same code" as a 
 
 The test code uses an oscilating value to ensure that each of two branches of a case statement (or function head pattern) are chosen an equal number of times.
 
-match_case.erl: version of a the function with simple case statement
-match_fn_head.erl: version with identical pattern match implemented as individual functions..
+* match_case.erl: version of a the function with simple case statement
+* match_fn_head.erl: version with identical pattern match implemented as individual functions..
 
