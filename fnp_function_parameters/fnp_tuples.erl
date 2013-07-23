@@ -1,14 +1,13 @@
--module(fp_tuples).
--export([main/0]).
--export([main/1]).
+-module(fnp_tuples).
+-export([start/0]).
 -export([tuples/1]).
 
-main() ->
-    main(10000).
+start() ->
+    start(10000).
 
-main(LoopCt) ->
-    io:format("fp_tuples results:~p~n",[
-                            timer:tc(fp_tuples,tuples,[LoopCt]) ]).
+start(LoopCt) ->
+    io:format("[fnp,fnp_tuples,~p]~n",[
+                            timer:tc(fnp_tuples,tuples,[LoopCt]) ]).
 
 %%% Uses nested tuples to organize related values.
 %%% Takes performance hit from destructuring.

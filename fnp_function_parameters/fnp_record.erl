@@ -1,14 +1,13 @@
--module(fp_record).
--export([main/0]).
--export([main/1]).
+-module(fnp_record).
+-export([start/0]).
 -export([records/2]).
 
-main() ->
-    main(10000).
+start() ->
+    start(10000).
 
-main(LoopCt) ->
-    io:format("fp_record results:~p~n",[
-                            timer:tc(fp_record,records,[init,LoopCt]) ]).
+start(LoopCt) ->
+    io:format("[fnp,fnp_record,~p]~n",[
+                            timer:tc(fnp_record,records,[init,LoopCt]) ]).
 
 %%% Record version which permits use of named fields.
 %%% Erlang's translation of record syntax into tagged tuples causes
