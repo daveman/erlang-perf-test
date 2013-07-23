@@ -1,3 +1,3 @@
 #!/bin/sh
-cat results.txt | sed 's/\[//' | sed 's/\]//' | sed 's/{//' | sed 's/\}//' > results.csv
+cat results.txt | sed 's/\[//g' | sed 's/\]//g' | sed 's/{//g' | sed 's/\}//g' > results.csv
 
