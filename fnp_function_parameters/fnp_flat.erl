@@ -1,13 +1,12 @@
 -module(fnp_flat).
 -export([start/0]).
--export([flat_parms/1]).
 
 start() ->
     start(10000).
 
 start(LoopCt) ->
-    io:format("[fnp,fnp_flat,~p]~n",[
-                            timer:tc(fnp_flat,flat_parms,[LoopCt]) ]).
+    io:format("~s,~p~n",[?MODULE_STRING,
+                            timer:tc(fun flat_parms/1,[LoopCt]) ]).
 
 %%% Flat six-field tuple -- efficient but unwieldy and difficult to read
 flat_parms(LoopCt) ->

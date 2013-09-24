@@ -7,6 +7,20 @@ Note: by comparing the relative efficiency of various Erlang language constructs
 
 The benchmarks were run individually from the command prompt using the shell scripts provided.  The rationale for using this methodology (as opposed to combining the test functions into a single program) was to prevent one test from influencing the outcome (time) of a subsequent test running in the same VM instance.  
 
+My hope is that my scripts will make it easier for others to get started in performing their own code benchmarks/comparisons.  The main script is run_tests.sh which will compile (once) and repeatedly execute multiple erlang programs using the compiler options provided to it.  An example script invocation would be:
+    ./run_tests.sh -s cvfh*.erl -c 10
+which would compile and run any erlang program matching the cvfhi\*.erl file pattern in any subdirectory of the current directory 10 times with the default compiler options.  Likewse:
+    ./run_tests.sh -s cvfh*.erl -c 10 -o "+native"
+would run the all of the same tests but would compile them using the +native option which invokes the HiPE native code compiler.  Additional options are expected to be listed inside the quotation marks and separated by spaces.
+
+Output
+======
+
+Each of the supplied erlang benchmarks has a common boilerplate wrapper which writes it's own timing information to standard output (which is directed to resultes.txt by the run_tests.sh script.)  The output includes the compiler options used as well as the output from the script itself (to allow for verification that "competing" code actually produces the same output).  In an ideal world the output data would be read and summarize by an erlang program.  I have not yet written such a program but have instead simplified the manual analysis of the data by writing/providing a simple shell script to convert the results.txt output file into a .csv file which is easily loaded and manipulated by any spreadsheet program.  I would welcome a pull request for an erlang program to perform the analysis!
+
+Sample Benchmarks Provided
+==========================
+
 Comparisons of related language elements are divided by directory.  As of this writing the benchmark categories include...
 
 Tests/Test Directories
@@ -37,4 +51,10 @@ The test code uses an oscilating value to ensure that each of two branches of a 
 
 * cvfh_match_case.erl: version of a function with simple case statement
 * cvfh_match_fn_head.erl: version with identical pattern match implemented as individual functions..
+
+tricky
+
+This directory holds some tiny tests that I used to explore counterintuitive benchmarks wherein a program which seemingly performs less work actually takes longer to execute with specific compiler options.  More explanation to follow as time permits.
+
+
 

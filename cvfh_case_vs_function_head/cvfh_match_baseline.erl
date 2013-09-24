@@ -1,21 +1,17 @@
 -module(cvfh_match_baseline).
 -export([start/0]).
-%-export([lopo/1]).
-%576460752303423488
 
 start() ->
     start(40000000),
     halt.
 
 start(LoopCt) ->
-    %apply(fun lopo/1,[LoopCt]),
-    io:format("cvfh_match_baseline results,~p~n",[
-                            timer:tc(fun lopo/1,[LoopCt]) ]).
+    io:format("~s,~p~n",[?MODULE_STRING,
+                            timer:tc(fun loop/1,[LoopCt]) ]).
 
-
-lopo(LoopCt) ->
-    lopo(LoopCt,1,0).
-lopo(LoopCt,_X,Acc) ->
+loop(LoopCt) ->
+    loop(LoopCt,1,0).
+loop(LoopCt,_X,Acc) ->
     NewAcc = Acc + 1,
 
     %Looks like this assignment gets optimized out when
@@ -25,7 +21,7 @@ lopo(LoopCt,_X,Acc) ->
 
     if
         Acc < LoopCt ->
-            lopo(LoopCt,NewX,NewAcc);
+            loop(LoopCt,NewX,NewAcc);
         true -> NewAcc
     end.
 

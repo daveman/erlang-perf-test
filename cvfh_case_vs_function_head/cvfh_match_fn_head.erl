@@ -7,9 +7,8 @@ start() ->
     halt.
 
 start(LoopCt) ->
-    io:format("cvfh_match_fn_head results,~p~n",[
+    io:format("~s,~p~n",[?MODULE_STRING,
                             timer:tc(fun loop/1,[LoopCt]) ]).
-
 
 loop(LoopCt) ->
     loop(LoopCt,1,0).
